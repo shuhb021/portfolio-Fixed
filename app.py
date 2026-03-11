@@ -9,7 +9,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
-
 # ─── Config ────────────────────────────────────────────────────────────────────
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'change-me-in-production')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///portfolio.db')
@@ -25,7 +24,9 @@ SMTP_PASS  = os.environ.get('SMTP_PASS', '')
 OWNER_EMAIL = os.environ.get('OWNER_EMAIL', '')
 
 db.init_app(app)
-
+with app.app_context():
+    db.create_all()
+    seed_data()
 
 # ─── Context Processor ─────────────────────────────────────────────────────────
 # FIX: inject unread_count into every admin template so the sidebar badge works
