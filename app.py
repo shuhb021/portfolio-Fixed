@@ -24,10 +24,13 @@ SMTP_PASS  = os.environ.get('SMTP_PASS', '')
 OWNER_EMAIL = os.environ.get('OWNER_EMAIL', '')
 
 db.init_app(app)
-with app.app_context():
-    db.create_all()
-    seed_data()
-
+@app.before_request
+def initialize_database():
+    if not hasattr(app, '_db_initialized'):
+        db.create_all()
+        seed_data()
+        app._db_initialized = True
+        
 # ─── Context Processor ─────────────────────────────────────────────────────────
 # FIX: inject unread_count into every admin template so the sidebar badge works
 @app.context_processor
