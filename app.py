@@ -7,8 +7,9 @@ from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import temfile 
 
-app = Flask(__name__)
+app = Flask(__name__, instance_path='/tmp')
 # ─── Config ────────────────────────────────────────────────────────────────────
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'change-me-in-production')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///portfolio.db')
