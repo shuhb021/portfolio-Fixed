@@ -15,8 +15,8 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'change-me-in-production
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///portfolio.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')
+ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'Shubh')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '@021106')
 
 SMTP_HOST  = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
 SMTP_PORT  = int(os.environ.get('SMTP_PORT', 587))
